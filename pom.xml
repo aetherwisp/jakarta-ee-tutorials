@@ -1,0 +1,72 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <!-- =============== -->
+    <!-- PROJECT SECTION -->
+    <!-- =============== -->
+    <groupId>com.github.aetherwisp</groupId>
+    <artifactId>jakarta-ee-tutorials</artifactId>
+    <version>1.0.0</version>
+    <packaging>pom</packaging>
+    <name>Jakarta EE 10 Tutorials</name>
+
+    <!-- ================== -->
+    <!-- PROPERTIES SECTION -->
+    <!-- ================== -->
+    <properties>
+        <maven.compiler.source>17</maven.compiler.source>
+        <maven.compiler.target>17</maven.compiler.target>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.report.sourceEncoding>UTF-8</project.report.sourceEncoding>
+    </properties>
+
+    <!-- ==================== -->
+    <!-- DEPENDENCIES SECTION -->
+    <!-- ==================== -->
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>jakarta.platform</groupId>
+                <artifactId>jakarta.jakartaee-web-api</artifactId>
+                <version>10.0.0</version>
+                <scope>provided</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
+    <!-- ============= -->
+    <!-- BUILD SECTION -->
+    <!-- ============= -->
+    <build>
+        <finalName>${project.artifactId}</finalName>
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-compiler-plugin</artifactId>
+                    <version>3.13.0</version>
+                </plugin>
+                <plugin>
+                    <artifactId>maven-war-plugin</artifactId>
+                    <version>3.4.0</version>
+                    <configuration>
+                        <failOnMissingWebXml>false</failOnMissingWebXml>
+                    </configuration>
+                </plugin>
+
+                <!-- Execute 'mvn clean package wildfly:dev' to run the application. -->
+                <plugin>
+                    <groupId>org.wildfly.plugins</groupId>
+                    <artifactId>wildfly-maven-plugin</artifactId>
+                    <version>4.2.2.Final</version>
+                    <configuration>
+                        <version>31.0.1.Final</version><!-- 使用する WildFly のバージョン。省略時は最新の安定バージョンが自動選択される -->
+                        <server-config>standalone.xml</server-config><!-- 使用する WildFly サーバ構成のパス -->
+                    </configuration>
+                </plugin>
+            </plugins>
+        </pluginManagement>
+    </build>
+</project>
