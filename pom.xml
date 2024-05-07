@@ -63,7 +63,7 @@
                     <version>4.2.2.Final</version>
                     <configuration>
                         <version>31.0.1.Final</version><!-- 使用する WildFly のバージョン。省略時は最新の安定バージョンが自動選択される -->
-                        <server-config>standalone.xml</server-config><!-- 使用する WildFly サーバ構成のパス -->
+                        <server-config>standalone-full.xml</server-config><!-- 使用する WildFly サーバ構成のパス -->
                     </configuration>
                 </plugin>
             </plugins>
